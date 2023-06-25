@@ -9,7 +9,7 @@ const config = {
         'p-brown': '#4A001F',
         'p-dark-turquoise': '#07393C',
         'p-turquoise': '#2C666E',
-        'p-light-turquoise': '#90DDF0',
+        'p-light-turquoise': '#E0EBED',
       },
     },
   },
