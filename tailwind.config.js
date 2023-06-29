@@ -5,11 +5,11 @@ const config = {
   theme: {
     extend: {
       colors: {
-        'p-white': '#F0EDEE',
-        'p-brown': '#4A001F',
-        'p-dark-turquoise': '#07393C',
-        'p-turquoise': '#2C666E',
-        'p-light-turquoise': '#E0EBED',
+        'p-white': '#FCFCFC',
+        'p-black': '#292D32',
+        'p-blue': '#C4DFDF',
+        'p-light-blue': '#F8F6F4',
+        'p-yellow': '#FFD966',
       },
       screens: {
         'sm': '640px',
