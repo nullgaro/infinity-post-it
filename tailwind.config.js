@@ -5,11 +5,16 @@ const config = {
   theme: {
     extend: {
       colors: {
-        'p-white': '#FCFCFC',
-        'p-black': '#292D32',
-        'p-blue': '#C4DFDF',
-        'p-light-blue': '#F8F6F4',
-        'p-yellow': '#FFD966',
+        'p-black': '#222831',
+        'p-gray': '#393E46',
+        'p-navy': '#00ADB5',
+        'p-white': '#EEEEEE',
+
+        // 'p-white': '#FEFEFE',
+        // 'p-black': '#292D32',
+        // 'p-blue': '#C4DFDF',
+        // 'p-light-blue': '#F8F6F4',
+        // 'p-yellow': '#FFD966',
       },
       screens: {
         'sm': '640px',
