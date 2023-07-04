@@ -1,6 +1,6 @@
 <script>
   import "./app.css";
-  import Profile_icon from "./lib/Profile_icon.svelte";
+  import ProfileIcon from "./lib/ProfileIcon.svelte";
 </script>
 
 <template lang="pug">
@@ -10,13 +10,13 @@
       div(class="w-40 flex justify-around place-content-center")
         a(href="/about" class="mt-2 text-p-white align-baseline duration-150 hover:text-p-navy") About
         button
-          Profile_icon(size="32px" color="white" class="[&>*]:duration-150 [&>*]:hover:stroke-p-navy")
+          ProfileIcon(size="32px" color="white" class="[&>*]:duration-150 [&>*]:hover:stroke-p-navy")
 
     div(class="h-2/6 w-4/5 sm:w-[30rem] mt-20 bg-p-gray rounded-lg flex flex-col items-center justify-center")
       form(class="h-full w-11/12 flex flex-col justify-evenly")
         div(class="w-full flex justify-center items-center")
           div(class="h-1/5 w-1/2 flex items-center")
-            Profile_icon(size="40px" color="white" class="mr-2")
+            ProfileIcon(size="40px" color="white" class="mr-2")
             p(class="text-p-white") Annonymous
           div(class="h-full w-1/2 flex items-center justify-end")
             input(name="post" value="Post-it!" type="submit" class="h-8 w-3/6 rounded-2xl bg-p-navy")
