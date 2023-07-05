@@ -19,19 +19,8 @@
             ProfileIcon(class="h-10 w-10 mr-2 [&>*]:stroke-p-white")
             p(class="text-p-white") Annonymous
           div(class="h-full w-1/2 flex items-center justify-end")
-            input(name="post" value="Post-it!" type="submit" class="h-8 w-3/6 rounded-2xl bg-p-navy")
-        textarea(placeholder="Type your Post-it..." class="h-4/6 w-full p-3 rounded-md bg-p-white resize-none")
-
-    //- div(class="h-2/5 w-4/5 sm:w-[30rem] mt-20 bg-p-blue rounded-lg flex flex-col items-center")
-    //-   div(class="h-1/5 w-5/6 flex items-center")
-    //-     img(src="src/assets/images/profile_icon.svg" alt="test" class="h-10 mr-2")
-    //-     p Annonymous
-    //-   form(class="h-4/5 w-5/6 flex flex-col items-center")
-    //-     div(class="h-3/4 w-full flex justify-center items-center")
-    //-       textarea(placeholder="Type your Post-it..." class="h-full w-full p-3 rounded-md bg-p-white resize-none")
-    //-     div(class="h-1/4 w-full flex justify-end items-end")
-    //-       input(name="post" value="Post-it!" type="submit" class="h-1/2 w-2/5 mb-4 rounded-lg bg-p-yellow")
-
+            input(name="post" value="Post-it!" type="submit" class="h-8 w-3/6 rounded-2xl bg-p-navy border border-solid border-p-gray transition-all duration-300 ease-in-out hover:cursor-pointer hover:bg-p-light-navy hover:border hover:border-solid hover:border-p-navy hover:shadow-[0_0_6px_0_rgba(0,173,181,1)]")
+        textarea(placeholder="Type your Post-it..." class="h-4/6 w-full p-3 rounded-md bg-p-white resize-none outline-none border-2 border-solid border-p-gray focus:border-2 focus:border-solid focus:border-p-navy transition-all duration-300 ease-in-out focus:shadow-[0_0_6px_0_rgba(0,173,181,1)]")
 </template>
 
 <style lang="sass" scoped>
