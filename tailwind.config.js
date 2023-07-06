@@ -7,6 +7,7 @@ const config = {
       colors: {
         'p-black': '#222831',
         'p-gray': '#393E46',
+        'p-brown': '#765C48',
         'p-navy': '#00ADB5',
         'p-light-navy': '#00BCC6',
         'p-light-gray': '#B8B8B8',
