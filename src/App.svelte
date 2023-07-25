@@ -33,7 +33,7 @@
         button
           //- https://www.svgrepo.com/svg/364195/arrows-down-up-fill
           OrderIcon(class="h-8 w-8 [&>*]:fill-p-white [&>*]:duration-150 [&>*]:hover:fill-p-navy")
-    ul(class="grid grid-cols-7 grid-flow-row justify-start")
+    ul(class="grid grid-cols-[repeat(auto-fit,_minmax(13rem,_1fr))] gap-8")
       PostIt
       PostIt
       PostIt
