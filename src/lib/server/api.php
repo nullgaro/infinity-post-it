@@ -21,11 +21,6 @@ header("Content-type: application/json; charset=UTF-8");
 
 $parts = explode('/', $_SERVER["REQUEST_URI"]);
 
-if ($parts[1] != "post-its") {
-    http_response_code(404);
-    exit;
-}
-
 $id = $parts[2] ?? null;
 
 $host = $_ENV["DB_HOST"];
@@ -35,8 +30,20 @@ $pass = $_ENV["DB_PASS"];
 
 $database = new Database("$host", "$db", "$user", "$pass");
 
-$gateway = new PostitGateway($database);
+switch($parts[1]) {
+    case "post-its":
+        $gateway = new PostitGateway($database);
 
-$controller = new PostitController($gateway);
+        $controller = new PostitController($gateway);
 
-$controller->processRequest($_SERVER["REQUEST_METHOD"], $id);
+        $controller->processRequest($_SERVER["REQUEST_METHOD"], $id);
+
+        break;
+    case "users":
+
+        break;
+
+    default:
+        http_response_code(404);
+        exit;
+}
