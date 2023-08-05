@@ -7,14 +7,12 @@ class UserController {
 
     public function processRequest(string $method, ?string $id): void {
 
-        $this->processResourceRequest($method, $id);
+        if ($id) {
+            $this->processResourceRequest($method, $id);
 
-    //     if ($id) {
-    //         $this->processResourceRequest($method, $id);
-
-    //     } else {
-    //         $this->processCollectionRequest($method, $id);
-    //     }
+        } else {
+            $this->processCollectionRequest($method);
+        }
     }
 
     private function processResourceRequest(string $method, string $id): void {
