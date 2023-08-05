@@ -11,7 +11,7 @@ class PostitController {
             $this->processResourceRequest($method, $id);
 
         } else {
-            $this->processCollectionRequest($method, $id);
+            $this->processCollectionRequest($method);
         }
     }
 
