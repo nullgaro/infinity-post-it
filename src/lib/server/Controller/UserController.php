@@ -28,6 +28,10 @@ class UserController {
             case "GET":
                 echo json_encode($user);
                 break;
+
+            default:
+                http_response_code(405);
+                header("Allow: POST");
         }
     }
 
