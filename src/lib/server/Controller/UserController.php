@@ -63,13 +63,21 @@ class UserController {
     private function getValidationErrors(array $data): array {
         $errors = [];
 
-        if(empty($data["content"])) {
-            $errors[] = "content is required";
+        if(empty($data["username"])) {
+            $errors[] = "username is required";
         }
 
-        if(array_key_exists("user_id", $data)) {
-            if(filter_var($data["user_id"], FILTER_VALIDATE_INT) === false) {
-                $errors[] = "user_id must be an integer";
+        if(empty($data["password"])) {
+            $errors[] = "password is required";
+        }
+
+        if(empty($data["email"])) {
+            $errors[] = "email is required";
+        }
+
+        if(array_key_exists("email", $data)) {
+            if(filter_var($data["email"], FILTER_VALIDATE_EMAIL) === false) {
+                $errors[] = "email must be an integer";
             }
         }
 
