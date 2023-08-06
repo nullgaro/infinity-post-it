@@ -21,11 +21,11 @@ class UserGateway {
 
     public function create(array $data): string {
         $sql = "INSERT INTO users(username, password, creation_date, email, verified, vip)
-                VALUES (:user_id, :password, :creation_date, :email, :verified, :vip)";
+                VALUES (:username, :password, :creation_date, :email, :verified, :vip)";
 
         $stmt = $this->conn->prepare($sql);
 
-        $stmt->bindValue(":user_id", $data["user_id"] ?? 0, PDO::PARAM_INT);
+        $stmt->bindValue(":username", $data["username"] ?? 0, PDO::PARAM_INT);
         $stmt->bindValue(":password", $data["password"], PDO::PARAM_STR);
         $stmt->bindValue(":creation_date", date('Y-m-d'), PDO::PARAM_STR);
         $stmt->bindValue(":email", $data["email"], PDO::PARAM_STR);
