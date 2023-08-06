@@ -81,7 +81,7 @@ class UserController {
 
         if(array_key_exists("email", $data)) {
             if(filter_var($data["email"], FILTER_VALIDATE_EMAIL) === false) {
-                $errors[] = "email must be an integer";
+                $errors[] = "Not valid email";
             }
         }
 
