@@ -2,16 +2,26 @@
 
 declare(strict_types=1);
 
-spl_autoload_register(function ($class) {
-    require __DIR__ . "/db/$class.php";
-    require __DIR__ . "/Exceptions/$class.php";
-    require __DIR__ . "/Gateway/$class.php";
-    require __DIR__ . "/Controller/$class.php";
-});
+// Work around: Import manually
+    require __DIR__ . "/Controller/PostitController.php";
+    require __DIR__ . "/Controller/UserController.php";
+    require __DIR__ . "/db/Database.php";
+    require __DIR__ . "/Exceptions/ErrorHandler.php";
+    require __DIR__ . "/Gateway/PostitGateway.php";
+    require __DIR__ . "/Gateway/UserGateway.php";
+
+
+// TODO: Make SPL work with several directories
+// spl_autoload_register(function ($class) {
+//     require __DIR__ . "/db/$class.php";
+//     // require __DIR__ . "/Exceptions/$class.php";
+//     require __DIR__ . "/Gateway/$class.php";
+//     require __DIR__ . "/Controller/$class.php";
+// });
 
 // Dotenv
-require 'vendor/autoload.php';
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+require '../../../vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../../..");
 $dotenv->load();
 
 set_error_handler("ErrorHandler::handleError");
@@ -40,7 +50,11 @@ switch($parts[1]) {
 
         break;
     case "users":
+        $gateway = new UserGateway($database);
 
+        $controller = new UserController($gateway);
+
+        $controller->processRequest($_SERVER["REQUEST_METHOD"], $id);
         break;
 
     default:
