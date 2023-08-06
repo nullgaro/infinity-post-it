@@ -44,7 +44,7 @@ class PostitController {
             case "POST":
                 $data = (array) json_decode(file_get_contents("php://input"), true);
 
-                $errors = $this->getValidateionErrors($data);
+                $errors = $this->getValidationErrors($data);
 
                 if(! empty($errors)) {
                     http_response_code(422);
@@ -67,7 +67,7 @@ class PostitController {
         }
     }
 
-    private function getValidateionErrors(array $data): array {
+    private function getValidationErrors(array $data): array {
         $errors = [];
 
         if(empty($data["content"])) {
