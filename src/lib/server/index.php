@@ -28,6 +28,7 @@ set_error_handler("ErrorHandler::handleError");
 set_exception_handler("ErrorHandler::handleException");
 
 header("Content-type: application/json; charset=UTF-8");
+header('Access-Control-Allow-Origin: http://localhost:5173');
 
 $parts = explode('/', $_SERVER["REQUEST_URI"]);
 
