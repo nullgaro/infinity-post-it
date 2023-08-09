@@ -4,6 +4,11 @@
   import FilterIcon from "./lib/FilterIcon.svelte";
   import OrderIcon from "./lib/OrderIcon.svelte";
   import PostIt from "./lib/PostIt.svelte";
+
+  const fetchPostIts = (async () => {
+		const response = await fetch('http://localhost:8080/post-its')
+    return await response.json()
+	})()
 </script>
 
 <template lang="pug">
@@ -34,6 +39,16 @@
           //- https://www.svgrepo.com/svg/364195/arrows-down-up-fill
           OrderIcon(class="h-8 w-8 [&>*]:fill-p-white [&>*]:duration-150 [&>*]:hover:fill-p-navy")
     ul(class="grid grid-cols-[repeat(auto-fit,_minmax(13rem,_1fr))] place-items-center gap-8 px-4")
+
+      +await('fetchPostIts')
+        p ...waiting
+
+        +then("post_its")
+          +each("post_its as post_it")
+            p {post_it.content}
+        +catch('error')
+          p {error}
+
       PostIt
       PostIt
       PostIt
