@@ -8,7 +8,7 @@ class PostitGateway {
     }
 
     public function getAll(): array {
-        $sql = "SELECT * FROM postits";
+        $sql = "SELECT postits.content, postits.color, postits.publish_date, users.username as 'author' FROM postits INNER JOIN users ON postits.user_id = users.user_id";
         $stmt = $this->conn->query($sql);
 
         $data = [];
@@ -35,7 +35,7 @@ class PostitGateway {
     }
 
     public function get(string $id): array | false {
-        $sql = "SELECT * FROM postits where postit_id = :postit_id";
+        $sql = "SELECT postits.content, postits.color, postits.publish_date, users.username as 'author' FROM postits INNER JOIN users ON postits.user_id = users.user_id where postit_id = :postit_id";
 
         $stmt = $this->conn->prepare($sql);
 
