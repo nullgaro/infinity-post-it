@@ -41,23 +41,13 @@
     ul(class="grid grid-cols-[repeat(auto-fit,_minmax(13rem,_1fr))] place-items-center gap-8 px-4")
 
       +await('fetchPostIts')
-        p ...waiting
+        p ...loading
 
         +then("post_its")
           +each("post_its as post_it")
-            p {post_it.content}
+            PostIt(props="{post_it}")
         +catch('error')
-          p {error}
-
-      PostIt
-      PostIt
-      PostIt
-      PostIt
-      PostIt
-      PostIt
-      PostIt
-      PostIt
-      PostIt
+          p Unable to load the postits :(
 
 </template>
 
