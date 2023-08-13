@@ -31,7 +31,7 @@ class UserController {
 
             default:
                 http_response_code(405);
-                header("Allow: POST");
+                header("Allow: GET");
         }
     }
 
