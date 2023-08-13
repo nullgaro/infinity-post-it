@@ -6,9 +6,17 @@
   import PostIt from "./lib/PostIt.svelte";
 
   const fetchPostIts = (async () => {
-		const response = await fetch('http://localhost:8080/post-its')
+		const response = await fetch("http://localhost:8080/post-its")
     return await response.json()
 	})()
+
+  function createPostIt(data) {
+    fetch("http://localhost:8080/post-its", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {"Content-type": "application/json; charset=UTF-8"}
+})};
+
 </script>
 
 <template lang="pug">
