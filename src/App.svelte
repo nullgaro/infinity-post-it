@@ -10,7 +10,7 @@
     return await response.json()
 	})()
 
-  function createPostIt(data) {
+  function createPostIt(e) {
     fetch("http://localhost:8080/post-its", {
     method: "POST",
     body: JSON.stringify(data),
@@ -30,7 +30,7 @@
             ProfileIcon(class="h-8 w-8 [&>*]:stroke-p-white [&>*]:duration-150 [&>*]:hover:stroke-p-navy")
 
       div(class="h-96 w-4/5 sm:w-[30rem] my-20 bg-p-gray rounded-lg flex flex-col items-center justify-center")
-        form(class="h-full w-11/12 flex flex-col justify-evenly")
+        form(on:submit|preventDefault class="h-full w-11/12 flex flex-col justify-evenly")
           div(class="w-full flex justify-center items-center")
             div(class="h-full w-1/2 flex items-center gap-3")
               ProfileIcon(class="h-10 w-10 [&>*]:stroke-p-white")
