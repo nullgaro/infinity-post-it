@@ -25,7 +25,7 @@ class PostitGateway {
 
         $stmt = $this->conn->prepare($sql);
 
-        $stmt->bindValue(":user_id", $data["user_id"] ?? 0, PDO::PARAM_INT);
+        $stmt->bindValue(":user_id", $data["user_id"] ?? 1, PDO::PARAM_INT);
         $stmt->bindValue(":content", $data["content"], PDO::PARAM_STR);
         $stmt->bindValue(":publish_date", date('Y-m-d'), PDO::PARAM_STR);
 
