@@ -8,7 +8,7 @@ class PostitGateway {
     }
 
     public function getAll(): array {
-        $sql = "SELECT postits.content, postits.color, postits.publish_date, users.username as 'author' FROM postits INNER JOIN users ON postits.user_id = users.user_id";
+        $sql = "SELECT postits.content, postits.color, postits.publish_date, users.username as 'author' FROM postits INNER JOIN users ON postits.user_id = users.user_id ORDER BY postits.postit_id DESC";
         $stmt = $this->conn->query($sql);
 
         $data = [];
