@@ -29,4 +29,4 @@ CREATE TABLE IF NOT EXISTS postits(
 
 SET FOREIGN_KEY_CHECKS=1;
 
-INSERT INTO users(username, password, creation_date, email, verified, vip) VALUES ('Anonymous', 'Anonymous', '2000-01-01', 'anonymous@example.com', TRUE, FALSE);
+INSERT INTO users(user_id, username, password, creation_date, email, verified, vip) VALUES (1, 'Anonymous', 'Anonymous', '2000-01-01', 'anonymous@example.com', TRUE, FALSE);
