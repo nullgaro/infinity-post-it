@@ -29,6 +29,7 @@ set_exception_handler("ErrorHandler::handleException");
 
 header("Content-type: application/json; charset=UTF-8");
 header('Access-Control-Allow-Origin: http://localhost:5173');
+header("Access-Control-Allow-Headers: Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
 $parts = explode('/', $_SERVER["REQUEST_URI"]);
 
@@ -40,6 +41,12 @@ $user = $_ENV["DB_NAME"];
 $pass = $_ENV["DB_PASS"];
 
 $database = new Database("$host", "$db", "$user", "$pass");
+
+// Add a handler for OPTIONS method to prevent CORS error
+if ($_SERVER["REQUEST_METHOD"] == "OPTIONS") {
+    http_response_code(200);
+    exit;
+}
 
 switch($parts[1]) {
     case "post-its":
