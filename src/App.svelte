@@ -10,20 +10,26 @@
     return await response.json()
 	})()
 
-  const createPostIt = e => {
+  const createPostIt = (async (e) => {
 		const formData = new FormData(e.target)
-		const data = {}
-		for (let field of formData) {
-			const [key, value] = field
-			data.append(key, value)
-		}
-    console.log(formData)
+		let data = {}
 
-    // fetch("http://localhost:8080/post-its", {
-    // method: "POST",
-    // body: JSON.stringify(data),
-    // headers: {"Content-type": "application/json; charset=UTF-8"}
-};
+		for (let field of formData) {
+      const [key, value] = field
+			data[key] = value
+		}
+
+    const response = await fetch("http://localhost:8080/post-its", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {"Content-type": "application/json; charset=UTF-8"}
+    });
+
+    if(response.status) {
+      window.location.reload(true);
+    }
+
+  });
 
 </script>
 
@@ -45,7 +51,7 @@
               p(class="text-p-white") Anonymous
             div(class="h-full w-1/2 flex items-center justify-end")
               input(name="post" value="Post-it!" type="submit" class="h-8 w-3/6 rounded-2xl bg-p-navy border border-solid border-p-gray transition-all duration-300 ease-in-out hover:cursor-pointer hover:bg-p-light-navy hover:border hover:border-solid hover:border-p-navy hover:shadow-[0_0_6px_0_rgba(0,173,181,1)]")
-          textarea(placeholder="Type your Post-it..." class="h-4/6 w-full p-3 rounded-md bg-p-white resize-none outline-none border-2 border-solid border-p-gray focus:border-2 focus:border-solid focus:border-p-navy transition-all duration-300 ease-in-out focus:shadow-[0_0_6px_0_rgba(0,173,181,1)]")
+          textarea(name="content" placeholder="Type your Post-it..." class="h-4/6 w-full p-3 rounded-md bg-p-white resize-none outline-none border-2 border-solid border-p-gray focus:border-2 focus:border-solid focus:border-p-navy transition-all duration-300 ease-in-out focus:shadow-[0_0_6px_0_rgba(0,173,181,1)]")
 
     div(class="w-full py-4 px-6 bg-p-gray flex place-content-end gap-5")
         button
