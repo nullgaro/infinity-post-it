@@ -3,7 +3,7 @@
 
     let ProfileIcon;
     export let props;
-    let profilePath = `./images/profiles/${props.author.toLowerCase()}.png`
+    let profilePath = `./public/images/profiles/${props.author.toLowerCase()}.png`
     console.log(profilePath)
 </script>
 <template lang="pug">
