@@ -1,1 +1,3 @@
-This is a README.md :D
+[WIP] This project is being done using Pug, Tailwind, Sveltekit, Vite, PHP and MariaDB. 
+
+ 
