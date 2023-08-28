@@ -39,7 +39,7 @@
       form(on:submit|preventDefault="{login}" class="h-2/4 w-11/12 flex flex-col justify-evenly items-center")
         input(name="username" type="text" class="h-8 w-4/6 rounded-md bg-p-white border border-solid border-p-gray")
         input(name="password" type="password" class="h-8 w-4/6 rounded-md bg-p-white border border-solid border-p-gray")
-        input(name="post" value="Login" type="submit" class="h-8 w-4/6 rounded-2xl bg-p-navy border border-solid border-p-gray transition-all duration-300 ease-in-out hover:cursor-pointer hover:bg-p-light-navy hover:border hover:border-solid hover:border-p-navy hover:shadow-[0_0_6px_0_rgba(0,173,181,1)]")
+        input(name="login" value="Login" type="submit" class="h-8 w-4/6 rounded-2xl bg-p-navy border border-solid border-p-gray transition-all duration-300 ease-in-out hover:cursor-pointer hover:bg-p-light-navy hover:border hover:border-solid hover:border-p-navy hover:shadow-[0_0_6px_0_rgba(0,173,181,1)]")
       a(href="/register" class="text-blue-500 text-sm underline") Not registered yet?
     div(class="w-full py-4 px-6 bg-p-gray flex place-content-end")
 </template>
