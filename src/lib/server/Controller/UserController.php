@@ -83,6 +83,10 @@ class UserController {
             if(filter_var($data["email"], FILTER_VALIDATE_EMAIL) === false) {
                 $errors[] = "Not valid email";
             }
+
+            if($this->gateway->checkIfExistsEmail($data["email"])) {
+                $errors[] = "This email is already registered";
+            }
         }
 
         return $errors;
