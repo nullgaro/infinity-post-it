@@ -89,6 +89,12 @@ class UserController {
             }
         }
 
+        if(array_key_exists("username", $data)) {
+            if($this->gateway->checkIfExistsUsername($data["username"])) {
+                $errors[] = "This username is already registered";
+            }
+        }
+
         return $errors;
     }
 }
