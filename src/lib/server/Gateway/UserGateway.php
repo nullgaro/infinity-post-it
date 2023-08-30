@@ -64,4 +64,18 @@ class UserGateway {
 
         return ($exists) ? true : false;
     }
+
+    public function checkIfExistsUsername(string $username): bool {
+        $sql = "SELECT * FROM users where username = :username";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->bindValue(":username", $username, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $exists = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return ($exists) ? true : false;
+    }
 }
