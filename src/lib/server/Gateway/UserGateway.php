@@ -50,4 +50,18 @@ class UserGateway {
 
         return $data;
     }
+
+    public function checkIfExistsEmail(string $email): bool {
+        $sql = "SELECT * FROM users where email = :email";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->bindValue(":email", $email, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $exists = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return ($exists) ? true : false;
+    }
 }
