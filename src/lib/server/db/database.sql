@@ -7,7 +7,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- DROP TABLE IF EXISTS users;
 CREATE TABLE IF NOT EXISTS users(
     user_id int auto_increment PRIMARY KEY,
-    username varchar(24) not null,
+    username varchar(24) not null unique,
     password varchar(32) not null,
     creation_date date not null,
     email varchar(256) not null unique,
