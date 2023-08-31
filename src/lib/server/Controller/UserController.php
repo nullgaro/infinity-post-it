@@ -48,6 +48,8 @@ class UserController {
                     break;
                 }
 
+                $data["password"] = password_hash($data["password"], PASSWORD_DEFAULT);
+
                 $id = $this->gateway->create($data);
 
                 http_response_code(201);
