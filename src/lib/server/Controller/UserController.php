@@ -65,7 +65,6 @@ class UserController {
         }
     }
 
-    // TODO: Modify errors
     private function getValidationErrors(array $data): array {
         $errors = [];
 
@@ -97,6 +96,20 @@ class UserController {
             }
         }
 
+        if(array_key_exists("password", $data)) {
+            if(! $this->validatePasswordSecurity($data["password"])) {
+                $errors[] = "This password doesn't follow the security standards";
+            }
+        }
+
         return $errors;
+    }
+
+    private function validatePasswordSecurity(string $password): bool {
+        if (strlen($password) < 8){
+            return false;
+        }
+
+        return true;
     }
 }
