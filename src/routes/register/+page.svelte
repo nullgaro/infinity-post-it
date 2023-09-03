@@ -20,8 +20,6 @@
       headers: {"Content-type": "application/json; charset=UTF-8"}
     });
 
-    console.log(response.status)
-
     if(response.status === 201) {
       window.location.assign("/login");
     }
