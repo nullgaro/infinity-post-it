@@ -48,6 +48,10 @@ class UserController {
                     break;
                 }
 
+                $data["username"] = filter_var($data["username"], FILTER_SANITIZE_SPECIAL_CHARS);
+                $data["email"] = filter_var($data["email"], FILTER_SANITIZE_EMAIL);
+                $data["password"] = filter_var($data["password"], FILTER_SANITIZE_SPECIAL_CHARS);
+
                 $data["password"] = password_hash($data["password"], PASSWORD_DEFAULT);
 
                 $id = $this->gateway->create($data);
