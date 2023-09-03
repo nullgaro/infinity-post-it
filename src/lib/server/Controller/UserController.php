@@ -69,6 +69,39 @@ class UserController {
         }
     }
 
+    public function login(string $method): void {
+        switch ($method) {
+            case "POST":
+                $data = (array) json_decode(file_get_contents("php://input"), true);
+
+                $data["username"] = filter_var($data["username"], FILTER_SANITIZE_SPECIAL_CHARS);
+                $data["password"] = filter_var($data["password"], FILTER_SANITIZE_SPECIAL_CHARS);
+
+                $errors = $this->getLoginErrors($data);
+
+                if(! empty($errors)) {
+                    http_response_code(422);
+                    echo json_encode(["errors" => $errors]);
+                    break;
+                }
+
+                session_start();
+
+                $_SESSION["username"] = $data["username"];
+
+                http_response_code(200);
+                echo json_encode([
+                    "message" => "Logged in",
+                    "session" => $_SESSION
+                ]);
+                break;
+
+            default:
+                http_response_code(405);
+                header("Allow: POST");
+        }
+    }
+
     private function getRegisterErrors(array $data): array {
         $errors = [];
 
@@ -104,6 +137,32 @@ class UserController {
             if(! $this->validatePasswordSecurity($data["password"])) {
                 $errors[] = "This password doesn't follow the security standards";
             }
+        }
+
+        return $errors;
+    }
+
+    private function getLoginErrors(array $data): array {
+        $errors = [];
+
+        if(empty($data["username"])) {
+            $errors[] = "username is required";
+            return $errors;
+        }
+
+        if(empty($data["password"])) {
+            $errors[] = "password is required";
+            return $errors;
+        }
+
+        // Check if user exists and the password it's correct
+        if(! $this->gateway->checkIfExistsUsername($data["username"])) {
+            $errors[] = "username or password are incorrect";
+            return $errors;
+        }
+
+        if(! $this->gateway->checkIfPasswordIsCorrect($data["username"], $data["password"])) {
+            $errors[] = "username or password are incorrect";
         }
 
         return $errors;
