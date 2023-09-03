@@ -40,7 +40,7 @@ class UserController {
             case "POST":
                 $data = (array) json_decode(file_get_contents("php://input"), true);
 
-                $errors = $this->getValidationErrors($data);
+                $errors = $this->getRegisterErrors($data);
 
                 if(! empty($errors)) {
                     http_response_code(422);
@@ -65,7 +65,7 @@ class UserController {
         }
     }
 
-    private function getValidationErrors(array $data): array {
+    private function getRegisterErrors(array $data): array {
         $errors = [];
 
         if(empty($data["username"])) {
