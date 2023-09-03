@@ -110,7 +110,7 @@ class UserController {
             return false;
         }
 
-        if (! preg_match('/[\'`´º\/ª·"^£$%&ç*(){}@#~¿?¡!<>.,:;|=_+¬-]/', $password)){
+        if (! preg_match('/[\'`´º\/ª\\\·"^£$%&ç*(){}@#~¿?¡!<>.,:;|=_+¬-]/', $password)){
             return false;
         }
 
