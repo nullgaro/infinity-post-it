@@ -22,9 +22,9 @@
 
     console.log(response.status)
 
-    // if(response.status) {
-    //   window.location.reload(true);
-    // }
+    if(response.status === 201) {
+      window.location.assign("/login");
+    }
 
   });
 
