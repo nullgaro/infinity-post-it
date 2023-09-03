@@ -6,23 +6,23 @@
   import PostIt from "../../lib/PostIt.svelte";
 
   const login = (async (e) => {
-		// const formData = new FormData(e.target)
-		// let data = {}
+		const formData = new FormData(e.target)
+		let data = {}
 
-		// for (let field of formData) {
-    //   const [key, value] = field
-		// 	data[key] = value
-		// }
+		for (let field of formData) {
+      const [key, value] = field
+			data[key] = value
+		}
 
-    // const response = await fetch("http://localhost:8080/post-its", {
-    //   method: "POST",
-    //   body: JSON.stringify(data),
-    //   headers: {"Content-type": "application/json; charset=UTF-8"}
-    // });
+    const response = await fetch("http://localhost:8080/login", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {"Content-type": "application/json; charset=UTF-8"}
+    });
 
-    // if(response.status) {
-    //   window.location.reload(true);
-    // }
+    if(response.status === 200) {
+      window.location.assign("/");
+    }
 
   });
 
