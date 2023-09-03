@@ -78,4 +78,18 @@ class UserGateway {
 
         return ($exists) ? true : false;
     }
+
+    public function checkIfPasswordIsCorrect(string $username, string $password): bool {
+        $sql = "SELECT password FROM users where username = :username";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->bindValue(":username", $username, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $db_password = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return password_verify($password, $db_password["password"]);
+    }
 }
