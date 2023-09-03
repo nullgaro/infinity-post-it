@@ -24,8 +24,8 @@
       body: JSON.stringify(data),
       headers: {"Content-type": "application/json; charset=UTF-8"}
     });
-    console.log(response.status)
-    if(response.status == 201) {
+
+    if(response.status === 201) {
       window.location.reload(true);
     }
 
