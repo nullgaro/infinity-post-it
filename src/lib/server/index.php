@@ -57,12 +57,21 @@ switch($parts[1]) {
         $controller->processRequest($_SERVER["REQUEST_METHOD"], $id);
 
         break;
+
     case "users":
         $gateway = new UserGateway($database);
 
         $controller = new UserController($gateway);
 
         $controller->processRequest($_SERVER["REQUEST_METHOD"], $id);
+        break;
+
+    case "login":
+        $gateway = new UserGateway($database);
+
+        $controller = new UserController($gateway);
+
+        $controller->login($_SERVER["REQUEST_METHOD"]);
         break;
 
     default:
