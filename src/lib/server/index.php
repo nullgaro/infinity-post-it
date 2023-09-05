@@ -10,6 +10,7 @@ declare(strict_types=1);
     require __DIR__ . "/Gateway/PostitGateway.php";
     require __DIR__ . "/Gateway/UserGateway.php";
 
+    session_start();
 
 // TODO: Make SPL work with several directories
 // spl_autoload_register(function ($class) {
@@ -72,6 +73,14 @@ switch($parts[1]) {
         $controller = new UserController($gateway);
 
         $controller->login($_SERVER["REQUEST_METHOD"]);
+        break;
+
+    case "init":
+        $gateway = new UserGateway($database);
+
+        $controller = new UserController($gateway);
+
+        $controller->init($_SERVER["REQUEST_METHOD"]);
         break;
 
     default:
