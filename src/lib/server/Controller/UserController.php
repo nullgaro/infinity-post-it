@@ -69,6 +69,29 @@ class UserController {
         }
     }
 
+    public function init(string $method): void {
+        switch ($method) {
+            case "GET":
+                if ((session_status() == PHP_SESSION_ACTIVE) and array_key_exists("username", $_SESSION)) {
+                    $username = $_SESSION["username"];
+                }
+                else {
+                    $username = null;
+                }
+
+                http_response_code(200);
+                echo json_encode([
+                    "message" => "User sync",
+                    "username" => $username
+                ]);
+                break;
+
+            default:
+                http_response_code(405);
+                header("Allow: GET");
+        }
+    }
+
     public function login(string $method): void {
         switch ($method) {
             case "POST":
@@ -85,7 +108,7 @@ class UserController {
                     break;
                 }
 
-                session_start();
+                // session_start();
 
                 $_SESSION["username"] = $data["username"];
 
