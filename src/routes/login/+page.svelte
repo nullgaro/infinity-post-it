@@ -5,6 +5,11 @@
   import OrderIcon from "../../lib/OrderIcon.svelte";
   import PostIt from "../../lib/PostIt.svelte";
 
+  const init = (async (e) => {
+    const response = await fetch("http://localhost:8080/init");
+  })
+  init();
+
   const login = (async (e) => {
 		const formData = new FormData(e.target)
 		let data = {}
@@ -21,7 +26,7 @@
     });
 
     if(response.status === 200) {
-      window.location.assign("/");
+      // window.location.assign("/");
     }
 
   });
