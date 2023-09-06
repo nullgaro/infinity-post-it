@@ -3,14 +3,14 @@
 declare(strict_types=1);
 
 // Work around: Import manually
-    require __DIR__ . "/Controller/PostitController.php";
-    require __DIR__ . "/Controller/UserController.php";
-    require __DIR__ . "/db/Database.php";
-    require __DIR__ . "/Exceptions/ErrorHandler.php";
-    require __DIR__ . "/Gateway/PostitGateway.php";
-    require __DIR__ . "/Gateway/UserGateway.php";
+require __DIR__ . "/Controller/PostitController.php";
+require __DIR__ . "/Controller/UserController.php";
+require __DIR__ . "/db/Database.php";
+require __DIR__ . "/Exceptions/ErrorHandler.php";
+require __DIR__ . "/Gateway/PostitGateway.php";
+require __DIR__ . "/Gateway/UserGateway.php";
 
-    session_start();
+session_start();
 
 // TODO: Make SPL work with several directories
 // spl_autoload_register(function ($class) {
