@@ -91,7 +91,6 @@ declare module '$env/static/private' {
 	export const npm_config_noproxy: string;
 	export const PATH: string;
 	export const __GLX_VENDOR_LIBRARY_NAME: string;
-	export const npm_config_metrics_registry: string;
 	export const npm_config_node_gyp: string;
 	export const GDMSESSION: string;
 	export const ORIGINAL_XDG_CURRENT_DESKTOP: string;
@@ -196,7 +195,6 @@ declare module '$env/dynamic/private' {
 		npm_config_noproxy: string;
 		PATH: string;
 		__GLX_VENDOR_LIBRARY_NAME: string;
-		npm_config_metrics_registry: string;
 		npm_config_node_gyp: string;
 		GDMSESSION: string;
 		ORIGINAL_XDG_CURRENT_DESKTOP: string;

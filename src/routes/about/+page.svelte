@@ -46,6 +46,9 @@
       p(class="text-p-white text-xl text-center") Join us on this exciting journey as we reshape the way you share your thoughts and experiences online. Experience the creativity, connection, and convenience that Infinity Post-it brings to the world of digital expression.
       p(class="text-p-white text-xl text-center") Ready to get started? Sign up today and start sharing your virtual Post-it notes with the world. Together, we're building something extraordinary.
 
+      p(class="text-p-white text-xl text-center") You can see the project in:
+      a(href="https://github.com/nullgaro/infinity-post-it" class="text-p-white text-xl text-center underline") Infinity Post-It
+
     div(class="w-full py-4 px-6 bg-p-gray flex place-content-end")
 </template>
 
