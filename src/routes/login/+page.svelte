@@ -29,7 +29,7 @@
     });
 
     if(response.status === 200) {
-      // window.location.assign("/");
+      window.location.assign("/");
     }
 
   });
