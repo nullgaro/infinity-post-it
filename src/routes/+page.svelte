@@ -13,8 +13,8 @@
     });
 
     if (response.status === 200) {
-      let data = await response.json()
-      username = (data.username != null) ? data.username : "Anonymous"
+      let data =  await response.json();
+      username = (data.username != null) ? data.username : "Anonymous";
     }
   })
   init();
@@ -58,13 +58,13 @@
         div(class="w-40 flex justify-around items-center")
           a(href="/about" class="text-p-white align-baseline duration-150 hover:text-p-navy") About
           a(href="/login")
-            ProfileIcon(class="h-8 w-8 [&>*]:stroke-p-white [&>*]:duration-150 [&>*]:hover:stroke-p-navy")
+            img(src="./public/images/profiles/{username}.png" alt="{username}" class="h-10 w-10")
 
       div(class="h-96 w-4/5 sm:w-[30rem] my-20 bg-p-gray rounded-lg flex flex-col items-center justify-center")
         form(on:submit|preventDefault="{createPostIt}" class="h-full w-11/12 flex flex-col justify-evenly")
           div(class="w-full flex justify-center items-center")
             div(class="h-full w-1/2 flex items-center gap-3")
-              ProfileIcon(class="h-10 w-10 [&>*]:stroke-p-white")
+              img(src="./public/images/profiles/{username}.png" alt="{username}" class="h-10 w-10")
               p(class="text-p-white") {username}
             div(class="h-full w-1/2 flex items-center justify-end")
               input(name="post" value="Post-it!" type="submit" class="h-8 w-3/6 rounded-2xl bg-p-navy border border-solid border-p-gray transition-all duration-300 ease-in-out hover:cursor-pointer hover:bg-p-light-navy hover:border hover:border-solid hover:border-p-navy hover:shadow-[0_0_6px_0_rgba(0,173,181,1)]")
