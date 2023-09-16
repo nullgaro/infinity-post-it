@@ -52,6 +52,9 @@ class PostitController {
                     break;
                 }
 
+                $data["user_id"] = $this->gateway->getUserID($data["username"]);
+                unset($data["username"]);
+
                 $id = $this->gateway->create($data);
 
                 http_response_code(201);
@@ -72,6 +75,10 @@ class PostitController {
 
         if(empty($data["content"])) {
             $errors[] = "content is required";
+        }
+
+        if(empty($data["username"])) {
+            $errors[] = "username is required";
         }
 
         if(array_key_exists("user_id", $data)) {

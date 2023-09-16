@@ -35,6 +35,8 @@
 			data[key] = value
 		}
 
+    data["username"] = username;
+
     const response = await fetch("http://localhost:8080/post-its", {
       method: "POST",
       credentials: "include",

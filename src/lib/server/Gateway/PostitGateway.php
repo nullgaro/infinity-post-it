@@ -47,4 +47,18 @@ class PostitGateway {
 
         return $data;
     }
+
+    public function getUserID(string $username): int {
+        $sql = "SELECT user_id FROM users where username = :username";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->bindValue(":username", $username, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $data["user_id"];
+    }
 }
