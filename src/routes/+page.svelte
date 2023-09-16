@@ -5,10 +5,17 @@
   import OrderIcon from "../lib/OrderIcon.svelte";
   import PostIt from "../lib/PostIt.svelte";
 
+  let username = "Anonymous";
+
   const init = (async (e) => {
     const response = await fetch("http://localhost:8080/init", {
       credentials: "include",
     });
+
+    if (response.status === 200) {
+      let data = await response.json()
+      username = (data.username != null) ? data.username : "Anonymous"
+    }
   })
   init();
 
@@ -58,7 +65,7 @@
           div(class="w-full flex justify-center items-center")
             div(class="h-full w-1/2 flex items-center gap-3")
               ProfileIcon(class="h-10 w-10 [&>*]:stroke-p-white")
-              p(class="text-p-white") Anonymous
+              p(class="text-p-white") {username}
             div(class="h-full w-1/2 flex items-center justify-end")
               input(name="post" value="Post-it!" type="submit" class="h-8 w-3/6 rounded-2xl bg-p-navy border border-solid border-p-gray transition-all duration-300 ease-in-out hover:cursor-pointer hover:bg-p-light-navy hover:border hover:border-solid hover:border-p-navy hover:shadow-[0_0_6px_0_rgba(0,173,181,1)]")
           textarea(name="content" placeholder="Type your Post-it..." class="h-4/6 w-full p-3 rounded-md bg-p-white resize-none outline-none border-2 border-solid border-p-gray focus:border-2 focus:border-solid focus:border-p-navy transition-all duration-300 ease-in-out focus:shadow-[0_0_6px_0_rgba(0,173,181,1)]")
