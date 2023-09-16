@@ -5,6 +5,13 @@
   import OrderIcon from "../../lib/OrderIcon.svelte";
   import PostIt from "../../lib/PostIt.svelte";
 
+  const init = (async (e) => {
+    const response = await fetch("http://localhost:8080/init", {
+      credentials: "include",
+    });
+  })
+  init();
+
   const register = (async (e) => {
 		const formData = new FormData(e.target)
 		let data = {}
@@ -16,6 +23,7 @@
 
     const response = await fetch("http://localhost:8080/users", {
       method: "POST",
+      credentials: "include",
       body: JSON.stringify(data),
       headers: {"Content-type": "application/json; charset=UTF-8"}
     });

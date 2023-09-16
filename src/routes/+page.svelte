@@ -5,8 +5,17 @@
   import OrderIcon from "../lib/OrderIcon.svelte";
   import PostIt from "../lib/PostIt.svelte";
 
+  const init = (async (e) => {
+    const response = await fetch("http://localhost:8080/init", {
+      credentials: "include",
+    });
+  })
+  init();
+
   const fetchPostIts = (async () => {
-		const response = await fetch("http://localhost:8080/post-its")
+		const response = await fetch("http://localhost:8080/post-its", {
+      credentials: "include",
+    });
     return await response.json()
 	})()
 
@@ -21,6 +30,7 @@
 
     const response = await fetch("http://localhost:8080/post-its", {
       method: "POST",
+      credentials: "include",
       body: JSON.stringify(data),
       headers: {"Content-type": "application/json; charset=UTF-8"}
     });

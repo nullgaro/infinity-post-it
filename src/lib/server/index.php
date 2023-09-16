@@ -10,7 +10,14 @@ require __DIR__ . "/Exceptions/ErrorHandler.php";
 require __DIR__ . "/Gateway/PostitGateway.php";
 require __DIR__ . "/Gateway/UserGateway.php";
 
-session_start();
+if(!isset($_SESSION)) {
+    session_start();
+}
+
+header("Content-type: application/json; charset=UTF-8");
+header('Access-Control-Allow-Credentials: true');
+header('Access-Control-Allow-Origin: http://localhost:5173');
+header("Access-Control-Allow-Headers: Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, X-CSRF-Token");
 
 // TODO: Make SPL work with several directories
 // spl_autoload_register(function ($class) {
@@ -28,9 +35,6 @@ $dotenv->load();
 set_error_handler("ErrorHandler::handleError");
 set_exception_handler("ErrorHandler::handleException");
 
-header("Content-type: application/json; charset=UTF-8");
-header('Access-Control-Allow-Origin: http://localhost:5173');
-header("Access-Control-Allow-Headers: Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
 
 $parts = explode('/', $_SERVER["REQUEST_URI"]);
 
