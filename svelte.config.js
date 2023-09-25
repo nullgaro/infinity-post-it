@@ -7,4 +7,5 @@ export default {
   preprocess:  preprocess({
     pug: true
   }),
+  optimizeDeps: { include: [ 'objection', 'knex', 'pg' ], exclude: [ 'pg-native' ] },
 }

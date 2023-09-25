@@ -1,39 +1,45 @@
 <script>
   import "../app.css";
+  import { onMount } from "svelte";
+
+  export let data;
+  const { serverUsername } = data;
+
   import ProfileIcon from "../lib/ProfileIcon.svelte";
   import FilterIcon from "../lib/FilterIcon.svelte";
   import OrderIcon from "../lib/OrderIcon.svelte";
   import PostIt from "../lib/PostIt.svelte";
 
-  let username = "Anonymous";
 
-  const init = (async (e) => {
-    const response = await fetch("http://localhost:8080/init", {
-      credentials: "include",
+  let username = serverUsername ?? "Anonymous";
+
+  const getProfilePhoto = async () => {
+    const image = `./public/images/profiles/${username}.png`;
+
+    return await fetch(image).then((resp) => {
+      return resp.status === 200
+        ? image
+        : "./public/images/profiles/Anonymous.png";
     });
+  };
 
-    if (response.status === 200) {
-      let data =  await response.json();
-      username = (data.username != null) ? data.username : "Anonymous";
-    }
-  })
-  init();
+  const profilePhoto = getProfilePhoto();
 
   const fetchPostIts = (async () => {
-		const response = await fetch("http://localhost:8080/post-its", {
+    const response = await fetch("http://localhost:8080/post-its", {
       credentials: "include",
     });
-    return await response.json()
-	})()
+    return await response.json();
+  })();
 
-  const createPostIt = (async (e) => {
-		const formData = new FormData(e.target)
-		let data = {}
+  const createPostIt = async (e) => {
+    const formData = new FormData(e.target);
+    let data = {};
 
-		for (let field of formData) {
-      const [key, value] = field
-			data[key] = value
-		}
+    for (let field of formData) {
+      const [key, value] = field;
+      data[key] = value;
+    }
 
     data["username"] = username;
 
@@ -41,15 +47,13 @@
       method: "POST",
       credentials: "include",
       body: JSON.stringify(data),
-      headers: {"Content-type": "application/json; charset=UTF-8"}
+      headers: { "Content-type": "application/json; charset=UTF-8" },
     });
 
-    if(response.status === 201) {
+    if (response.status === 201) {
       window.location.reload(true);
     }
-
-  });
-
+  };
 </script>
 
 <template lang="pug">
@@ -60,13 +64,19 @@
         div(class="w-40 flex justify-around items-center")
           a(href="/about" class="text-p-white align-baseline duration-150 hover:text-p-navy") About
           a(href="/login")
-            img(src="./public/images/profiles/{username}.png" alt="{username}" class="h-10 w-10")
+            +await("profilePhoto")
+              p loading
+              +then("path")
+                img(src="{path}" alt="{username}" class="h-10 w-10")
 
       div(class="h-96 w-4/5 sm:w-[30rem] my-20 bg-p-gray rounded-lg flex flex-col items-center justify-center")
         form(on:submit|preventDefault="{createPostIt}" class="h-full w-11/12 flex flex-col justify-evenly")
           div(class="w-full flex justify-center items-center")
             div(class="h-full w-1/2 flex items-center gap-3")
-              img(src="./public/images/profiles/{username}.png" alt="{username}" class="h-10 w-10")
+              +await("profilePhoto")
+                p loading
+                +then("path")
+                  img(src="{path}" alt="{username}" class="h-10 w-10")
               p(class="text-p-white") {username}
             div(class="h-full w-1/2 flex items-center justify-end")
               input(name="post" value="Post-it!" type="submit" class="h-8 w-3/6 rounded-2xl bg-p-navy border border-solid border-p-gray transition-all duration-300 ease-in-out hover:cursor-pointer hover:bg-p-light-navy hover:border hover:border-solid hover:border-p-navy hover:shadow-[0_0_6px_0_rgba(0,173,181,1)]")
@@ -81,7 +91,7 @@
           OrderIcon(class="h-8 w-8 [&>*]:fill-p-white [&>*]:duration-150 [&>*]:hover:fill-p-navy")
     ul(class="grid grid-cols-[repeat(auto-fit,_minmax(13rem,_1fr))] place-items-center gap-8 px-4")
 
-      +await('fetchPostIts')
+      +await("fetchPostIts")
         p ...loading
 
         +then("post_its")
@@ -93,4 +103,5 @@
 </template>
 
 <style lang="sass" scoped>
+
 </style>
